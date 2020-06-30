@@ -33,9 +33,13 @@
    </target>
 
    <target name='distribute'>
-      <local.deploy.bootstrap fork.dir='${tree.top}/forks/web-bootstrap-fork'
+      <property name="branded-twitter-bootstrap.dir" location="${tmp.dir}/branded-twitter-bootstrap"/>
+      <mkdir dir='${branded-twitter-bootstrap.dir}'/>
+      <copy file='${dist.root}/branding/less/variables.less' todir='${branded-twitter-bootstrap.dir}'/>
+      <copy file='${dist.root}/branding/less/style.less' todir='${branded-twitter-bootstrap.dir}'/>
+      <local.deploy.bootstrap fork.dir='${dist.root}/web-bootstrap-fork'
                               out.dir='${web.dir}/bootstrap'
-                              src.dir='${source.dir}/less'/>
+                              src.dir='${branded-twitter-bootstrap.dir}'/>
    </target>
 
 </project>
